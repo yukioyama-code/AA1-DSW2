@@ -6,12 +6,13 @@
   <meta name="description" content="Protótipo da Vendinhas do DC.">
   <title>Vendinhas do DC</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 </head>
 <body>
   <header class="site-header">
     <nav class="container nav" aria-label="Navegação principal">
       <a class="brand" href="#inicio"><span class="mark"><img id="logo" src="imgs/logo_vendinha_dc.png" alt="Logo Vendinhas do DC">
-    </span>Vendinhas do DC</a>
+    </span>Vendinha do DC</a>
       <div class="links"><a href="#vitrine">Vitrine</a><a href="#como-funciona">Como funciona</a></div>
       <a class="cart" href="#carrinho">Carrinho <span class="count"></span></a>
     </nav>
@@ -40,7 +41,13 @@
       <article class="screen" id="pix"><div class="browser">● ● ● &nbsp; vendinhas.dc/pagamento</div><div class="screen-body pix"><span class="tag">PAGAMENTO VIA PIX</span><h3>Pronto para retirar!</h3><p>Escaneie o código ou copie a chave para simular o pagamento.</p><div class="qr">PIX</div><span class="pix-value">R$ 8,00</span><a class="button secondary wide" href="#inicio">Voltar à vitrine</a></div></article>
     </div></div></section>
   </main>
-  <footer><div class="container footer"><span><b>Vendinhas do DC</b> · Departamento de Computação · UFSCar</span><span>Protótipo acadêmico · AA1 DSW2</span></div></footer>
+  <footer><div class="container footer"><span><b>Vendinhas do DC</b> · Departamento de Computação · UFSCar</span>
+    <section class="dc-location" aria-labelledby="location-title">
+      <div><h2 id="location-title">Encontre a Vendinhas do DC</h2><p>Use sua localização para ver a distância até o Departamento de Computação.</p><button class="location-button" id="locate-user" type="button">Usar minha localização</button><p class="location-status" id="location-status">O mapa mostra a localização da vendinha.</p></div>
+      <div class="map-wrapper"><div id="dc-map" aria-label="Mapa da localização da Vendinhas do DC"></div></div>
+    </section>
+  </div></footer>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script src="script.js"></script>
 </body>
 </html>

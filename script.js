@@ -106,3 +106,70 @@ cartScreen.addEventListener('drop', (event) => {
 });
 
 renderCart();
+
+const dcLocation = { lat: -21.9798, lng: -47.88043 };
+const locationStatus = document.querySelector('#location-status');
+const locationButton = document.querySelector('#locate-user');
+
+function distanceInKm(origin, destination) {
+  const toRadians = (degrees) => degrees * Math.PI / 180;
+  const earthRadius = 6371;
+  const deltaLat = toRadians(destination.lat - origin.lat);
+  const deltaLng = toRadians(destination.lng - origin.lng);
+  const value = Math.sin(deltaLat / 2) ** 2
+    + Math.cos(toRadians(origin.lat)) * Math.cos(toRadians(destination.lat))
+    * Math.sin(deltaLng / 2) ** 2;
+
+  return earthRadius * 2 * Math.atan2(Math.sqrt(value), Math.sqrt(1 - value));
+}
+
+function initializeMap() {
+  if (!window.L) {
+    locationStatus.textContent = 'Não foi possível carregar o mapa. Verifique sua conexão.';
+    return;
+  }
+
+  const map = L.map('dc-map', { scrollWheelZoom: false }).setView([dcLocation.lat, dcLocation.lng], 16);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; OpenStreetMap'
+  }).addTo(map);
+
+  L.marker([dcLocation.lat, dcLocation.lng])
+    .addTo(map)
+    .bindPopup('<strong>Vendinhas do DC</strong><br>Departamento de Computação · UFSCar')
+    .openPopup();
+
+  locationButton.addEventListener('click', () => {
+    if (!navigator.geolocation) {
+      locationStatus.textContent = 'Geolocalização não é suportada por este navegador.';
+      return;
+    }
+
+    locationStatus.textContent = 'Buscando sua localização...';
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const userLocation = { lat: position.coords.latitude, lng: position.coords.longitude };
+        const distance = distanceInKm(userLocation, dcLocation);
+
+        L.marker([userLocation.lat, userLocation.lng])
+          .addTo(map)
+          .bindPopup('Você está aqui')
+          .openPopup();
+        map.fitBounds([[dcLocation.lat, dcLocation.lng], [userLocation.lat, userLocation.lng]], { padding: [35, 35] });
+        locationStatus.textContent = `Você está a aproximadamente ${distance.toFixed(1)} km da vendinha.`;
+      },
+      (error) => {
+        const messages = {
+          1: 'Permissão de localização negada.',
+          2: 'Sua localização não está disponível.',
+          3: 'A busca pela sua localização expirou.'
+        };
+        locationStatus.textContent = messages[error.code] ?? 'Não foi possível obter sua localização.';
+      },
+      { enableHighAccuracy: true, timeout: 10000 }
+    );
+  });
+}
+
+initializeMap();

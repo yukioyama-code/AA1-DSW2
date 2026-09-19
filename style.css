@@ -54,13 +54,13 @@ a {
 .mark,.add {
   display:grid;
   place-items:center;
-  color:#fff;
-  background:var(--green)
+  
+
 }
 .mark {
   width:38px;
   height:38px;
-  border-radius:12px
+ 
 }
 .links {
   display:flex;
@@ -106,11 +106,7 @@ a {
   font-size:.8rem;
   font-weight:800
 }
-.tag::before {
-  content:'Ã¢â€”Â';
-  color:#2e8bdb;
-  margin-right:7px
-}
+
 h1 {
   max-width:640px;
   margin:18px 0;
@@ -423,6 +419,49 @@ footer {
 footer b {
   color:#fff
 }
+.dc-location {
+  display:grid;
+  grid-template-columns:.8fr 1.2fr;
+  gap:24px;
+  align-items:center;
+  width:100%;
+  margin-left:auto
+}
+.dc-location h2 {
+  margin:0;
+  color:#fff;
+  font-size:1.3rem
+}
+.dc-location p {
+  max-width:330px;
+  margin:8px 0 14px;
+  line-height:1.5
+}
+.location-button {
+  padding:10px 13px;
+  border:0;
+  border-radius:9px;
+  color:var(--dark);
+  background:var(--lime);
+  cursor:pointer;
+  font-weight:800
+}
+.location-status {
+  min-height:38px;
+  margin-bottom:0 !important;
+  color:#d8e8f7;
+  font-size:.82rem
+}
+.map-wrapper {
+  overflow:hidden;
+  min-height:245px;
+  border:1px solid #ffffff33;
+  border-radius:15px
+}
+#dc-map {
+  width:100%;
+  height:245px
+}
 .draggable-product {
   cursor:grab;
   transition:transform .18s,box-shadow .18s
@@ -486,9 +525,12 @@ footer b {
   max-width:510px;
   justify-self:center
 }
-.products {
-  grid-template-columns:repeat(2,1fr)
-}
+  .products {
+    grid-template-columns:repeat(2,1fr)
+  }
+  .dc-location {
+    grid-template-columns:1fr
+  }
 
 }
 @media(max-width:600px) {
@@ -549,7 +591,7 @@ footer b {
 }
 
 #logo{
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
 
 }
