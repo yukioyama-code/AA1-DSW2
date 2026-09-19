@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Protótipo da Vendinhas do DC.">
+  <title>Vendinhas do DC</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="container nav" aria-label="Navegação principal">
+      <a class="brand" href="#inicio"><span class="mark"><img id="logo" src="imgs/logo_vendinha_dc.png" alt="Logo Vendinhas do DC">
+    </span>Vendinhas do DC</a>
+      <div class="links"><a href="#vitrine">Vitrine</a><a href="#como-funciona">Como funciona</a></div>
+      <a class="cart" href="#carrinho">Carrinho <span class="count"></span></a>
+    </nav>
+  </header>
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div>
+           <h1>Pegue, pague por <em>PIX</em> e siga seu dia.
+            </h1><p class="lead">Snacks, bebidas e aquele reforço para sobreviver entre uma aula e outra. Simples, rápido e pertinho de você.</p><div class="actions"><a class="button primary" href="#vitrine">Ver produtos</a><a class="button secondary" href="#como-funciona">Como funciona</a></div></div>
+        <aside class="feature"><div class="feature-top"><span>DESTAQUE DA SEMANA</span><span class="trust">✓ Confiança DC</span></div><div class="featured"><div class="emoji" role="img" aria-label="Copo de café">☕</div><div><small>ENERGIA PARA A MARATONA</small><h2>Café coado</h2><span class="price">R$ 3,00</span></div></div></aside>
+      </div>
+    </section>
+    <section class="catalog" id="vitrine">
+      <div class="container"><div class="heading"><h2>O que tem hoje?</h2><p>Escolha o que precisar. Os produtos abaixo representam a vitrine da vendinha.</p></div><div class="filters"><span class="filter active">Todos</span><span class="filter">Bebidas</span><span class="filter">Doces</span><span class="filter">Salgados</span></div>
+        <div class="products">
+          <article class="product"><div class="picture yellow">☕</div><div class="info"><small>BEBIDAS QUENTES</small><h3>Café coado</h3><div class="bottom"><b>R$ 3,00</b><a class="add" href="#carrinho">+</a></div></div></article>
+          <article class="product"><div class="picture blue">💧</div><div class="info"><small>BEBIDAS</small><h3>Água mineral</h3><div class="bottom"><b>R$ 2,50</b><a class="add" href="#carrinho">+</a></div></div></article>
+          <article class="product"><div class="picture red">🍫</div><div class="info"><small>DOCES</small><h3>Chocolate ao leite</h3><div class="bottom"><b>R$ 5,00</b><a class="add" href="#carrinho">+</a></div></div></article>
+          <article class="product"><div class="picture purple">🍪</div><div class="info"><small>LANCHES</small><h3>Biscoito recheado</h3><div class="bottom"><b>R$ 4,00</b><a class="add" href="#carrinho">+</a></div></div></article>
+        </div>
+      </div>
+    </section>
+    <section class="screens" id="como-funciona"><div class="container"><div class="screen-intro"><h2>Um fluxo simples, do seu jeito.</h2><p>Arraste um produto até o carrinho ou use o botão <b>+</b>. O pagamento via PIX continua sendo uma simulação.</p></div><div class="screen-grid">
+      <article class="screen" id="carrinho"><div class="browser">● ● ● &nbsp; vendinhas.dc/carrinho</div><div class="screen-body"><h3>Seu carrinho</h3><div class="item"><span class="mini">☕</span><div><b>Café coado</b><small>1 unidade · R$ 3,00</small></div><b>R$ 3,00</b></div><div class="item"><span class="mini">🍫</span><div><b>Chocolate ao leite</b><small>1 unidade · R$ 5,00</small></div><b>R$ 5,00</b></div><div class="total"><span>Total</span><span>R$ 8,00</span></div><a class="button primary wide" href="#pix">Ir para pagamento</a></div></article>
+      <article class="screen" id="pix"><div class="browser">● ● ● &nbsp; vendinhas.dc/pagamento</div><div class="screen-body pix"><span class="tag">PAGAMENTO VIA PIX</span><h3>Pronto para retirar!</h3><p>Escaneie o código ou copie a chave para simular o pagamento.</p><div class="qr">PIX</div><span class="pix-value">R$ 8,00</span><a class="button secondary wide" href="#inicio">Voltar à vitrine</a></div></article>
+    </div></div></section>
+  </main>
+  <footer><div class="container footer"><span><b>Vendinhas do DC</b> · Departamento de Computação · UFSCar</span><span>Protótipo acadêmico · AA1 DSW2</span></div></footer>
+  <script src="script.js"></script>
+</body>
+</html>
