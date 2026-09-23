@@ -1,55 +1,65 @@
 <!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Protótipo da Vendinhas do DC.">
-  <title>Vendinhas do DC</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
-</head>
-<body>
-  <header class="site-header">
-    <nav class="container nav" aria-label="Navegação principal">
-      <a class="brand" href="#inicio"><span class="mark"><img id="logo" src="imgs/logo_vendinha_dc.png" alt="Logo Vendinhas do DC">
-    </span>Vendinha do DC</a>
-      <div class="links"><a href="#vitrine">Vitrine</a><a href="#como-funciona">Como funciona</a></div>
-      <a class="cart" href="#carrinho">Carrinho <span class="count"></span></a>
-    </nav>
-  </header>
-  <main>
-    <!-- Hero section para explicar como a vendinha funciona e tals, dar um "guia" para o usuário -->
-    <section class="hero" id="inicio">
-      <div class="container hero-grid">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Plataforma para vendinhas autônomas baseadas em confiança.">
+    <title>Vendinha por Confiança</title>
+    <link rel="stylesheet" href="dist/style.css">
+  </head>
+  <body class="bg-surface font-sans text-ink antialiased">
+    <header class="sticky top-0 z-50 border-b border-line/80 bg-surface/95 backdrop-blur-xl">
+      <nav class="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6" aria-label="Navegação principal">
+        <a class="flex items-center gap-2.5 font-extrabold tracking-tight" href="index.html">
+          <span class="grid size-9 place-items-center rounded-xl bg-brand text-white">V</span>
+          <span>Vendinha <small class="block text-[10px] font-bold uppercase tracking-[.18em] text-muted">por confiança</small></span>
+        </a>
+        <a class="rounded-full bg-brand px-4 py-2 text-sm font-bold text-white shadow-sm transition hover:bg-brand-dark" href="vendedor.html">Área do vendedor</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="mx-auto grid max-w-6xl gap-10 px-4 pb-16 pt-10 sm:px-6 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:py-24">
         <div>
-           <h1>Pegue, pague por <em>PIX</em> e siga seu dia.
-            </h1><p class="lead">Snacks, bebidas e aquele reforço para sobreviver entre uma aula e outra. Simples, rápido e pertinho de você.</p><div class="actions"><a class="button primary" href="#vitrine">Ver produtos</a><a class="button secondary" href="#como-funciona">Como funciona</a></div></div>
-        <aside class="feature"><div class="feature-top"><span>DESTAQUE DA SEMANA</span><span class="trust">✓ Confiança DC</span></div><div class="featured"><div class="emoji" role="img" aria-label="Copo de café">☕</div><div><small>ENERGIA PARA A MARATONA</small><h2>Café coado</h2><span class="price">R$ 3,00</span></div></div></aside>
-      </div>
-    </section>
-    <section class="catalog" id="vitrine">
-      <div class="container"><div class="heading"><h2>O que tem hoje?</h2><p>Escolha o que precisar. Os produtos abaixo representam a vitrine da vendinha.</p></div><div class="filters"><span class="filter active">Todos</span><span class="filter">Bebidas</span><span class="filter">Doces</span><span class="filter">Salgados</span></div>
-        <div class="products">
-            <!-- aqui coloquei esses emojis temporários, precisa verificar se há necessidade do drag and drop ser por imagem --> 
-          <article class="product"><div class="picture yellow">☕</div><div class="info"><small>BEBIDAS QUENTES</small><h3>Café coado</h3><div class="bottom"><b>R$ 3,00</b><a class="add" href="#carrinho">+</a></div></div></article>
-          <article class="product"><div class="picture blue">💧</div><div class="info"><small>BEBIDAS</small><h3>Água mineral</h3><div class="bottom"><b>R$ 2,50</b><a class="add" href="#carrinho">+</a></div></div></article>
-          <article class="product"><div class="picture red">🍫</div><div class="info"><small>DOCES</small><h3>Chocolate ao leite</h3><div class="bottom"><b>R$ 5,00</b><a class="add" href="#carrinho">+</a></div></div></article>
-          <article class="product"><div class="picture purple">🍪</div><div class="info"><small>LANCHES</small><h3>Biscoito recheado</h3><div class="bottom"><b>R$ 4,00</b><a class="add" href="#carrinho">+</a></div></div></article>
+          <span class="inline-flex items-center gap-2 rounded-full bg-soft px-3 py-1.5 text-xs font-extrabold text-brand-dark"><span class="size-2 rounded-full bg-success"></span> Compra simples, controle inteligente</span>
+          <h1 class="mt-5 max-w-xl text-4xl font-black leading-[1.02] tracking-[-.055em] sm:text-6xl">Pegue o produto. Leia o QR. <span class="text-brand">Pague direto.</span></h1>
+          <p class="mt-5 max-w-xl text-base leading-7 text-muted sm:text-lg">Uma plataforma para vendinhas autônomas: o comprador paga em segundos e o vendedor acompanha produtos, estoque e vendas.</p>
+          <div class="mt-7 grid gap-3 sm:flex">
+            <a class="inline-flex min-h-12 items-center justify-center rounded-xl bg-brand px-5 font-extrabold text-white shadow-lg shadow-brand/20 transition hover:-translate-y-0.5 hover:bg-brand-dark" href="produto.html">Simular leitura do QR</a>
+            <a class="inline-flex min-h-12 items-center justify-center rounded-xl border border-line bg-white px-5 font-extrabold text-brand-dark transition hover:border-brand" href="vendedor.html">Conhecer o painel</a>
+          </div>
         </div>
-      </div>
-    </section>
-    <section class="screens" id="como-funciona"><div class="container"><div class="screen-intro"><h2>Um fluxo simples, do seu jeito.</h2><p>Arraste um produto até o carrinho ou use o botão <b>+</b>. O pagamento via PIX continua sendo uma simulação.</p></div><div class="screen-grid">
-      <article class="screen" id="carrinho"><div class="browser">● ● ● &nbsp; vendinhas.dc/carrinho</div><div class="screen-body"><h3>Seu carrinho</h3><div class="item"><span class="mini">☕</span><div><b>Café coado</b><small>1 unidade · R$ 3,00</small></div><b>R$ 3,00</b></div><div class="item"><span class="mini">🍫</span><div><b>Chocolate ao leite</b><small>1 unidade · R$ 5,00</small></div><b>R$ 5,00</b></div><div class="total"><span>Total</span><span>R$ 8,00</span></div><a class="button primary wide" href="#pix">Ir para pagamento</a></div></article>
-      <article class="screen" id="pix"><div class="browser">● ● ● &nbsp; vendinhas.dc/pagamento</div><div class="screen-body pix"><span class="tag">PAGAMENTO VIA PIX</span><h3>Pronto para retirar!</h3><p>Escaneie o código ou copie a chave para simular o pagamento.</p><div class="qr">PIX</div><span class="pix-value">R$ 8,00</span><a class="button secondary wide" href="#inicio">Voltar à vitrine</a></div></article>
-    </div></div></section>
-  </main>
-  <footer><div class="container footer"><span><b>Vendinhas do DC</b> · Departamento de Computação · UFSCar</span>
-    <section class="dc-location" aria-labelledby="location-title">
-      <div><h2 id="location-title">Encontre a Vendinhas do DC</h2><p>Use sua localização para ver a distância até o Departamento de Computação.</p><button class="location-button" id="locate-user" type="button">Usar minha localização</button><p class="location-status" id="location-status">O mapa mostra a localização da vendinha.</p></div>
-      <div class="map-wrapper"><div id="dc-map" aria-label="Mapa da localização da Vendinhas do DC"></div></div>
-    </section>
-  </div></footer>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-  <script src="script.js"></script>
-</body>
+
+        <div class="relative mx-auto w-full max-w-md rounded-[2rem] bg-brand-dark p-5 text-white shadow-2xl shadow-brand-dark/20">
+          <div class="flex items-center justify-between text-xs font-bold"><span>PRODUTO IDENTIFICADO</span><span class="rounded-full bg-white/10 px-2.5 py-1">✓ confiança</span></div>
+          <img class="mt-5 aspect-[4/3] w-full rounded-2xl object-cover" src="imgs/cafe.jpg" alt="Xícara de café coado">
+          <div class="mt-5 flex items-end justify-between gap-4">
+            <div><small class="font-bold text-blue-200">CAFÉ & BEBIDAS</small><h2 class="mt-1 text-2xl font-black">Café coado</h2><p class="mt-1 text-sm text-blue-100">Vendido por Ana</p></div>
+            <strong class="text-2xl text-amber-300">R$ 3,00</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-white py-16" id="como-funciona">
+        <div class="mx-auto max-w-6xl px-4 sm:px-6">
+          <p class="text-xs font-black uppercase tracking-[.2em] text-brand">Como funciona</p>
+          <h2 class="mt-2 text-3xl font-black tracking-tight">Do produto ao pagamento em três passos</h2>
+          <div class="mt-8 grid gap-4 md:grid-cols-3">
+            <article class="rounded-2xl border border-line p-5"><span class="grid size-10 place-items-center rounded-xl bg-soft font-black text-brand">1</span><h3 class="mt-4 text-lg font-extrabold">Leia o QR físico</h3><p class="mt-2 leading-6 text-muted">Cada produto possui um código que abre sua página no celular.</p></article>
+            <article class="rounded-2xl border border-line p-5"><span class="grid size-10 place-items-center rounded-xl bg-soft font-black text-brand">2</span><h3 class="mt-4 text-lg font-extrabold">Confira e pague</h3><p class="mt-2 leading-6 text-muted">Escolha a quantidade e faça o Pix diretamente ao vendedor.</p></article>
+            <article class="rounded-2xl border border-line p-5"><span class="grid size-10 place-items-center rounded-xl bg-soft font-black text-brand">3</span><h3 class="mt-4 text-lg font-extrabold">Registre a retirada</h3><p class="mt-2 leading-6 text-muted">A confirmação declarada atualiza os indicadores e o estoque estimado.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+        <div class="rounded-[2rem] bg-brand-dark p-6 text-white sm:p-10 lg:flex lg:items-center lg:justify-between">
+          <div><p class="text-xs font-black uppercase tracking-[.2em] text-blue-200">Para quem vende</p><h2 class="mt-2 text-3xl font-black">Saiba o que vende e o que precisa repor.</h2><p class="mt-3 max-w-2xl leading-7 text-blue-100">Cadastre produtos, gere etiquetas com QR Code e acompanhe estoque e vendas em um painel pensado primeiro para o celular.</p></div>
+          <a class="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-white px-5 font-extrabold text-brand-dark lg:mt-0 lg:w-auto" href="vendedor.html">Abrir painel demonstrativo</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-line bg-white"><div class="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-7 text-sm text-muted sm:flex-row sm:justify-between sm:px-6"><b class="text-ink">Vendinha por Confiança</b><span>Protótipo acadêmico · pagamentos não são verificados</span></div></footer>
+  </body>
 </html>

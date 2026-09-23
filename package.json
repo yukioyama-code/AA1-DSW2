@@ -1,0 +1,26 @@
+{
+  "name": "aa1-dsw2",
+  "version": "1.0.0",
+  "description": "Protótipo mobile-first para vendinhas autônomas baseadas em confiança",
+  "main": "script.js",
+  "scripts": {
+    "check": "node --check script.js",
+    "dev": "npx @tailwindcss/cli -i ./style.css -o ./dist/style.css --watch",
+    "build": "npx @tailwindcss/cli -i ./style.css -o ./dist/style.css --minify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yukioyama-code/AA1-DSW2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yukioyama-code/AA1-DSW2/issues"
+  },
+  "homepage": "https://github.com/yukioyama-code/AA1-DSW2#readme",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  }
+}
