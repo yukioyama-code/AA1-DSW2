@@ -1,108 +1,62 @@
-const cart = new Map();
-let draggedProduct = null;
+const currency = new Intl.NumberFormat('pt-BR', {
+  style: 'currency',
+  currency: 'BRL'
+});
 
-const cartScreen = document.querySelector('#carrinho');
-const countElement = document.querySelector('.count');
-const pixValue = document.querySelector('.pix-value');
+const quantity = document.querySelector('[data-quantity]');
+const total = document.querySelector('[data-total]');
 
-function productFromCard(card) {
-  const priceText = card.querySelector('.bottom b').textContent;
+function updateProductTotal() {
+  if (!quantity || !total) return;
 
-  return {
-    name: card.querySelector('h3').textContent,
-    emoji: card.querySelector('.picture').textContent,
-    price: Number(priceText.replace('R$', '').trim().replace(',', '.'))
-  };
+  const unitPrice = Number(quantity.dataset.unitPrice);
+  const amount = Number(quantity.textContent);
+  total.textContent = currency.format(unitPrice * amount);
 }
 
-function formatCurrency(value) {
-  return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-}
+document.querySelectorAll('[data-quantity-action]').forEach((button) => {
+  button.addEventListener('click', () => {
+    const current = Number(quantity.textContent);
+    const next = button.dataset.quantityAction === 'increase'
+      ? Math.min(current + 1, 9)
+      : Math.max(current - 1, 1);
 
-function addProduct(product) {
-  const item = cart.get(product.name) ?? { ...product, quantity: 0 };
-  item.quantity += 1;
-  cart.set(product.name, item);
-  renderCart();
-}
-
-function removeProduct(name) {
-  const item = cart.get(name);
-  if (!item) return;
-
-  if (item.quantity === 1) cart.delete(name);
-  else item.quantity -= 1;
-
-  renderCart();
-}
-
-function renderCart() {
-  const items = [...cart.values()];
-  const quantity = items.reduce((total, item) => total + item.quantity, 0);
-  const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
-
-  countElement.textContent = quantity;
-  pixValue.textContent = formatCurrency(total);
-
-  const content = items.length
-    ? items.map((item) => `
-        <div class="item">
-          <span class="mini">${item.emoji}</span>
-          <div><b>${item.name}</b><small>${item.quantity} unidade${item.quantity > 1 ? 's' : ''} · ${formatCurrency(item.price)}</small></div>
-          <button class="remove" type="button" data-product="${item.name}" aria-label="Remover ${item.name}">−</button>
-        </div>
-      `).join('')
-    : '<p class="empty-cart">Seu carrinho está vazio. Arraste um produto aqui.</p>';
-
-  cartScreen.querySelector('.screen-body').innerHTML = `
-    <h3>Seu carrinho</h3>
-    <p class="cart-hint">Arraste produtos para esta área</p>
-    <div class="drop-zone" aria-label="Área para soltar produtos">Solte aqui</div>
-    <div class="cart-items">${content}</div>
-    <div class="total"><span>Total</span><span>${formatCurrency(total)}</span></div>
-    <a class="button primary wide" href="#pix">Ir para pagamento</a>
-  `;
-
-  cartScreen.querySelectorAll('.remove').forEach((button) => {
-    button.addEventListener('click', () => removeProduct(button.dataset.product));
-  });
-}
-
-document.querySelectorAll('.product').forEach((card) => {
-  const product = productFromCard(card);
-  card.draggable = true;
-  card.classList.add('draggable-product');
-
-  card.addEventListener('dragstart', (event) => {
-    draggedProduct = product;
-    card.classList.add('dragging');
-    event.dataTransfer.effectAllowed = 'copy';
-    event.dataTransfer.setData('text/plain', product.name);
-  });
-
-  card.addEventListener('dragend', () => card.classList.remove('dragging'));
-
-  card.querySelector('.add').addEventListener('click', (event) => {
-    event.preventDefault();
-    addProduct(product);
+    quantity.textContent = next;
+    updateProductTotal();
   });
 });
 
-cartScreen.addEventListener('dragover', (event) => {
-  event.preventDefault();
-  cartScreen.classList.add('drop-active');
-  event.dataTransfer.dropEffect = 'copy';
+const copyButton = document.querySelector('[data-copy-pix]');
+const copyStatus = document.querySelector('[data-copy-status]');
+
+copyButton?.addEventListener('click', async () => {
+  const pixKey = copyButton.dataset.copyPix;
+
+  try {
+    await navigator.clipboard.writeText(pixKey);
+    copyStatus.textContent = 'Chave copiada!';
+  } catch {
+    copyStatus.textContent = `Chave Pix: ${pixKey}`;
+  }
 });
 
-cartScreen.addEventListener('dragleave', (event) => {
-  if (!cartScreen.contains(event.relatedTarget)) cartScreen.classList.remove('drop-active');
+document.querySelectorAll('[data-demo-confirm]').forEach((button) => {
+  button.addEventListener('click', () => {
+    const feedback = document.querySelector(`[data-feedback="${button.dataset.demoConfirm}"]`);
+    if (!feedback) return;
+
+    feedback.classList.remove('hidden');
+    feedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
 });
 
-cartScreen.addEventListener('drop', (event) => {
-  event.preventDefault();
-  cartScreen.classList.remove('drop-active');
-  if (draggedProduct) addProduct(draggedProduct);
-  draggedProduct = null;
-});
+const imageInput = document.querySelector('#product-image');
+const imagePreview = document.querySelector('#image-preview');
 
-renderCart();
+imageInput?.addEventListener('change', () => {
+  const [file] = imageInput.files;
+  if (!file || !imagePreview) return;
+
+  imagePreview.src = URL.createObjectURL(file);
+  imagePreview.classList.remove('hidden');
+});
