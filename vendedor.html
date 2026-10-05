@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="pt-BR">
   <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Painel de gestão do vendedor."><title>Painel do vendedor | Vendinha</title><link rel="stylesheet" href="dist/style.css"></head>
-  <body class="bg-surface font-sans text-ink antialiased">
-    <header class="sticky top-0 z-40 border-b border-line bg-white/95 backdrop-blur"><nav class="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6"><a class="flex items-center gap-2 font-extrabold" href="index.html"><span class="grid size-9 place-items-center rounded-xl bg-brand text-white">V</span> Vendinha</a><div class="flex items-center gap-3"><span class="hidden text-sm font-bold text-muted sm:block">Olá, Ana</span><span class="grid size-9 place-items-center rounded-full bg-brand-dark font-black text-white">A</span></div></nav></header>
+  <body data-seller-dashboard class="bg-surface font-sans text-ink antialiased">
+    <header class="sticky top-0 z-40 border-b border-line bg-white/95 backdrop-blur"><nav class="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6"><a class="flex items-center gap-2 font-extrabold" href="index.html"><span class="grid size-9 place-items-center rounded-xl bg-brand text-white">V</span> Vendinha</a><div class="flex items-center gap-3"><a class="text-sm font-bold text-brand" href="cadastro-vendedor.html">Editar cadastro</a><span class="hidden text-sm font-bold text-muted sm:block">Olá, <span data-seller-name>vendedor</span></span><span class="grid size-9 place-items-center rounded-full bg-brand-dark font-black text-white" data-seller-initial>V</span></div></nav></header>
     <main class="mx-auto max-w-6xl px-4 pb-28 pt-7 sm:px-6 md:pb-10">
       <div class="flex items-end justify-between gap-4"><div><p class="text-sm font-bold text-brand">PAINEL DO VENDEDOR</p><h1 class="mt-1 text-3xl font-black tracking-tight">Visão geral</h1><p class="mt-2 text-muted">Acompanhe sua vendinha hoje.</p></div><a class="hidden rounded-xl bg-brand px-4 py-3 text-sm font-extrabold text-white sm:inline-flex" href="cadastro-produto.html">+ Novo produto</a></div>
       <section class="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
@@ -22,5 +22,5 @@
     </main>
     <a class="fixed bottom-20 right-4 grid size-14 place-items-center rounded-full bg-brand text-2xl font-light text-white shadow-xl md:hidden" href="cadastro-produto.html" aria-label="Cadastrar produto">+</a>
     <nav class="safe-bottom fixed inset-x-0 bottom-0 z-50 grid grid-cols-3 border-t border-line bg-white px-2 pt-2 md:hidden" aria-label="Navegação do vendedor"><a class="text-center text-xs font-extrabold text-brand" href="vendedor.html"><span class="block text-xl">⌂</span>Início</a><a class="text-center text-xs font-bold text-muted" href="cadastro-produto.html"><span class="block text-xl" aria-hidden="true">+</span>Novo produto</a><a class="text-center text-xs font-bold text-muted" href="relatorios.html"><span class="block text-xl">▥</span>Relatórios</a></nav>
-  </body>
+  <script src="script.js?v=4"></script><script src="seller.js?v=2"></script></body>
 </html>
