@@ -4,7 +4,8 @@
   "description": "Protótipo mobile-first para vendinhas autônomas baseadas em confiança",
   "main": "script.js",
   "scripts": {
-    "check": "node --check script.js",
+    "check": "node --check script.js && node --check seller.js",
+    "test": "node --test seller.test.cjs",
     "dev": "npx @tailwindcss/cli -i ./style.css -o ./dist/style.css --watch",
     "build": "npx @tailwindcss/cli -i ./style.css -o ./dist/style.css --minify"
   },
