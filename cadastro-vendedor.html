@@ -1,27 +1,52 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Cadastro do vendedor | Vendinha</title><link rel="stylesheet" href="dist/style.css"></head>
-  <body class="bg-surface font-sans text-ink antialiased">
-    <header class="border-b border-line bg-white"><nav class="mx-auto flex h-16 max-w-md items-center px-4"><a class="font-bold text-brand" href="index.html">← Início</a><strong class="mx-auto">Área do vendedor</strong></nav></header>
-    <main class="mx-auto max-w-md px-4 pb-10 pt-5">
-      <form class="rounded-2xl border border-line bg-white p-5 shadow-card" data-seller-form>
-        <p class="text-xs font-black uppercase tracking-[.18em] text-brand">Cadastro do vendedor</p>
-        <h1 class="mt-2 text-2xl font-black">Configure sua vendinha</h1>
-        <p class="mt-2 text-sm leading-6 text-muted">Informe os dados de quem receberá o Pix antes de acessar o painel.</p>
-        <label class="mt-6 block text-sm font-extrabold" for="seller-name">Nome do recebedor</label>
-        <input class="mt-2 min-h-12 w-full rounded-xl border border-line bg-white px-4" id="seller-name" name="name" autocomplete="name" maxlength="25" required>
-        <label class="mt-5 block text-sm font-extrabold" for="seller-city">Cidade do recebedor</label>
-        <input class="mt-2 min-h-12 w-full rounded-xl border border-line bg-white px-4" id="seller-city" name="city" placeholder="São Carlos" autocapitalize="words" autocomplete="address-level2" maxlength="15" required>
-        <label class="mt-5 block text-sm font-extrabold" for="pix-key-type">Tipo de chave Pix</label>
-        <select class="mt-2 min-h-12 w-full rounded-xl border border-line bg-white px-3" id="pix-key-type" name="keyType"><option value="email">E-mail</option><option value="cpf">CPF</option><option value="cnpj">CNPJ</option><option value="phone">Celular</option><option value="random">Chave aleatória</option></select>
-        <label class="mt-5 block text-sm font-extrabold" for="seller-pix-key">Chave Pix</label>
-        <input class="mt-2 min-h-12 w-full rounded-xl border border-line bg-white px-4" id="seller-pix-key" name="key" type="email" maxlength="77" autocapitalize="none" spellcheck="false" aria-describedby="pix-key-help" required>
-        <p class="mt-2 text-xs leading-5 text-muted" id="pix-key-help">Informe o e-mail cadastrado como chave Pix no seu banco.</p>
-        <p class="mt-5 text-sm leading-6 text-muted">Os dados ficam salvos neste navegador e serão usados nos pagamentos dos produtos deste protótipo.</p>
-        <p class="mt-2 min-h-5 text-sm font-bold text-warning" role="status" aria-live="polite" data-seller-status></p>
-        <button class="mt-5 min-h-13 w-full rounded-xl bg-brand px-5 font-extrabold text-white" type="submit">Salvar e acessar o painel</button>
-      </form>
-    </main>
-    <script src="script.js"></script><script src="seller.js?v=2"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cadastro do vendedor | Vendinha</title>
+  <link rel="stylesheet" href="dist/style.css">
+</head>
+
+<body class="bg-surface font-sans text-ink antialiased">
+  <header class="border-b border-line bg-white">
+    <nav class="mx-auto flex h-16 max-w-md items-center px-4"><a class="font-bold text-brand" href="index.html">←
+        Início</a><strong class="mx-auto">Área do vendedor</strong></nav>
+  </header>
+  <main class="mx-auto max-w-md px-4 pb-10 pt-5">
+    <form class="rounded-2xl border border-line bg-white p-5 shadow-card" data-seller-form>
+      <p class="text-xs font-black uppercase tracking-[.18em] text-brand">Cadastro do vendedor</p>
+      <h1 class="mt-2 text-2xl font-black">Configure sua vendinha</h1>
+      <p class="mt-2 text-sm leading-6 text-muted">Informe os dados de quem receberá o Pix antes de acessar o painel.
+      </p>
+      <label class="mt-6 block text-sm font-extrabold" for="seller-name">Nome do recebedor</label>
+      <input class="mt-2 min-h-12 w-full rounded-xl border border-line bg-white px-4" id="seller-name" name="name"
+        autocomplete="name" maxlength="25" required>
+      <label class="mt-5 block text-sm font-extrabold" for="seller-city">Cidade do recebedor</label>
+      <input class="mt-2 min-h-12 w-full rounded-xl border border-line bg-white px-4" id="seller-city" name="city"
+        placeholder="São Carlos" autocapitalize="words" autocomplete="address-level2" maxlength="15" required>
+      <label class="mt-5 block text-sm font-extrabold" for="pix-key-type">Tipo de chave Pix</label>
+      <select class="mt-2 min-h-12 w-full rounded-xl border border-line bg-white px-3" id="pix-key-type" name="keyType">
+        <option value="email">E-mail</option>
+        <option value="cpf">CPF</option>
+        <option value="cnpj">CNPJ</option>
+        <option value="phone">Celular</option>
+        <option value="random">Chave aleatória</option>
+      </select>
+      <label class="mt-5 block text-sm font-extrabold" for="seller-pix-key">Chave Pix</label>
+      <input class="mt-2 min-h-12 w-full rounded-xl border border-line bg-white px-4" id="seller-pix-key" name="key"
+        type="email" maxlength="77" autocapitalize="none" spellcheck="false" aria-describedby="pix-key-help" required>
+      <p class="mt-2 text-xs leading-5 text-muted" id="pix-key-help">Informe o e-mail cadastrado como chave Pix no seu
+        banco.</p>
+      <p class="mt-5 text-sm leading-6 text-muted">Os dados ficam salvos neste navegador e serão usados nos pagamentos
+        dos produtos deste protótipo.</p>
+      <p class="mt-2 min-h-5 text-sm font-bold text-warning" role="status" aria-live="polite" data-seller-status></p>
+      <button class="mt-5 min-h-13 w-full rounded-xl bg-brand px-5 font-extrabold text-white" type="submit">Salvar e
+        acessar o painel</button>
+    </form>
+  </main>
+  <script src="script.js"></script>
+  <script src="seller.js?v=2"></script>
+</body>
+
 </html>
