@@ -1,18 +1,63 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Pagamento Pix do produto."><title>Pagamento | Vendinha</title><link rel="stylesheet" href="dist/style.css"></head>
-  <body class="bg-surface font-sans text-ink antialiased">
-    <header class="border-b border-line bg-white"><nav class="mx-auto flex h-16 max-w-md items-center px-4"><a class="font-bold text-brand" href="produto.html">← Produto</a><strong class="mx-auto pr-12">Pagamento</strong></nav></header>
-    <main class="mx-auto max-w-md px-4 pb-10 pt-5">
-      <section class="rounded-[1.75rem] border border-line bg-white p-5 shadow-card">
-        <div class="flex items-center gap-3 border-b border-line pb-5"><img class="size-16 rounded-xl object-cover" src="imgs/cafe.jpg" alt=""><div class="min-w-0 flex-1"><h1 class="font-extrabold">Café coado</h1><p class="text-sm text-muted"><span data-payment-quantity data-unit-price="3">1 unidade</span> · <span data-seller-name>Vendedor</span></p></div><strong class="text-lg" data-payment-total>R$ 3,00</strong></div>
-        <div class="py-6 text-center"><span class="rounded-full bg-soft px-3 py-1.5 text-xs font-extrabold text-brand-dark">PAGAMENTO VIA PIX</span><h2 class="mt-4 text-2xl font-black">Pix Copia e Cola</h2><p class="mt-2 text-sm leading-6 text-muted">Copie o código abaixo e cole na opção Pix Copia e Cola do aplicativo do seu banco.</p><p class="mt-5 text-3xl font-black text-brand" data-payment-total>R$ 3,00</p></div>
-        <div class="rounded-2xl bg-surface p-4"><label class="text-xs font-bold uppercase tracking-wide text-muted" for="pix-code">Código Pix Copia e Cola</label><textarea class="mt-2 min-h-28 w-full rounded-xl border border-line bg-white px-4 py-3 text-sm" id="pix-code" readonly spellcheck="false" data-pix-code></textarea><button class="mt-2 min-h-11 w-full rounded-lg bg-white px-3 py-2 text-sm font-extrabold text-brand shadow-sm" type="button" data-copy-pix disabled>Copiar código Pix</button><p class="mt-2 min-h-5 text-sm font-bold text-success" role="status" aria-live="polite" data-copy-status></p><p class="mt-2 text-xs leading-5 text-muted">Confira o recebedor e o valor no aplicativo do banco antes de confirmar o Pix.</p><a class="mt-3 inline-block text-sm font-bold text-brand" href="cadastro-vendedor.html">Configurar dados do vendedor</a><noscript>Ative o JavaScript para gerar o código Pix.</noscript></div>
-        <button class="mt-5 min-h-13 w-full rounded-xl bg-success px-5 font-extrabold text-white" type="button" data-demo-confirm="payment">Já realizei o pagamento</button>
-        <div class="mt-5 hidden rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-left" data-feedback="payment"><p class="font-extrabold text-success">✓ Retirada registrada</p><p class="mt-1 text-sm leading-6 text-emerald-800">O vendedor verá este registro no painel. O sistema não confirma a transação bancária.</p><a class="mt-3 inline-block font-bold text-brand" href="index.html">Voltar ao início</a></div>
-      </section>
-      <p class="mt-5 text-center text-xs leading-5 text-muted">Este sistema funciona com base na confiança entre comprador e vendedor.</p>
-    </main>
-    <script src="script.js?v=3"></script><script src="seller.js"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Pagamento Pix do produto.">
+  <title>Pagamento | Vendinha</title>
+  <link rel="stylesheet" href="dist/style.css">
+</head>
+
+<body class="bg-surface font-sans text-ink antialiased">
+  <header class="border-b border-line bg-white">
+    <nav class="mx-auto flex h-16 max-w-md items-center px-4"><a class="font-bold text-brand" href="produto.html">←
+        Produto</a><strong class="mx-auto pr-12">Pagamento</strong></nav>
+  </header>
+  <main class="mx-auto max-w-md px-4 pb-10 pt-5">
+    <section class="rounded-[1.75rem] border border-line bg-white p-5 shadow-card">
+      <div class="flex items-center gap-3 border-b border-line pb-5"><img class="size-16 rounded-xl object-cover"
+          src="imgs/cafe.jpg" alt="">
+        <div class="min-w-0 flex-1">
+          <h1 class="font-extrabold">Café coado</h1>
+          <p class="text-sm text-muted"><span data-payment-quantity data-unit-price="3">1 unidade</span> · <span
+              data-seller-name>Vendedor</span></p>
+        </div><strong class="text-lg" data-payment-total>R$ 3,00</strong>
+      </div>
+      <div class="py-6 text-center"><span
+          class="rounded-full bg-soft px-3 py-1.5 text-xs font-extrabold text-brand-dark">PAGAMENTO VIA PIX</span>
+        <h2 class="mt-4 text-2xl font-black">Pix Copia e Cola</h2>
+        <p class="mt-2 text-sm leading-6 text-muted">Copie o código abaixo e cole na opção Pix Copia e Cola do
+          aplicativo do seu banco.</p>
+        <p class="mt-5 text-3xl font-black text-brand" data-payment-total>R$ 3,00</p>
+      </div>
+      <div class="rounded-2xl bg-surface p-4"><label class="text-xs font-bold uppercase tracking-wide text-muted"
+          for="pix-code">Código Pix Copia e Cola</label><textarea
+          class="mt-2 min-h-28 w-full rounded-xl border border-line bg-white px-4 py-3 text-sm" id="pix-code" readonly
+          spellcheck="false" data-pix-code></textarea><button
+          class="mt-2 min-h-11 w-full rounded-lg bg-white px-3 py-2 text-sm font-extrabold text-brand shadow-sm"
+          type="button" data-copy-pix disabled>Copiar código Pix</button>
+        <p class="mt-2 min-h-5 text-sm font-bold text-success" role="status" aria-live="polite" data-copy-status></p>
+        <p class="mt-2 text-xs leading-5 text-muted">Confira o recebedor e o valor no aplicativo do banco antes de
+          confirmar o Pix.</p><a class="mt-3 inline-block text-sm font-bold text-brand"
+          href="cadastro-vendedor.html">Configurar dados do vendedor</a><noscript>Ative o JavaScript para gerar o código
+          Pix.</noscript>
+      </div>
+      <button class="mt-5 min-h-13 w-full rounded-xl bg-success px-5 font-extrabold text-white" type="button"
+        data-demo-confirm="payment">Já realizei o pagamento</button>
+      <div class="mt-5 hidden rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-left"
+        data-feedback="payment">
+        <p class="font-extrabold text-success">✓ Retirada registrada</p>
+        <p class="mt-1 text-sm leading-6 text-emerald-800">O vendedor verá este registro no painel. O sistema não
+          confirma a transação bancária.</p><a class="mt-3 inline-block font-bold text-brand" href="index.html">Voltar
+          ao início</a>
+      </div>
+    </section>
+    <p class="mt-5 text-center text-xs leading-5 text-muted">Este sistema funciona com base na confiança entre comprador
+      e vendedor.</p>
+  </main>
+  <script src="script.js?v=3"></script>
+  <script src="seller.js"></script>
+</body>
+
 </html>
