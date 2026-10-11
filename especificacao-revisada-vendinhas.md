@@ -103,6 +103,14 @@ Quando o comprador informar uma retirada e um pagamento, o sistema poderá reduz
 
 Como o sistema se baseia em confiança, o estoque apresentado corresponderá às movimentações registradas pelos usuários e poderá apresentar diferenças em relação ao estoque físico.
 
+### Avisos de inconsistência no estoque
+
+Na página do produto acessada pelo QR Code, o comprador poderá selecionar **Informar diferença no estoque** e indicar a quantidade total encontrada antes de retirar seus produtos. A quantidade deverá ser inteira, igual ou maior que zero e diferente do estoque exibido. Uma observação opcional de até 500 caracteres poderá complementar o aviso, sem necessidade de cadastro do comprador.
+
+O painel do vendedor apresentará os avisos com produto, estoque exibido no envio, quantidade encontrada, observação, data e situação. Os pendentes aparecerão primeiro, com contador próprio. Após a conferência física, o vendedor poderá marcar o aviso como **conferido**, mantendo-o no histórico. Nenhuma dessas ações altera automaticamente o estoque.
+
+Na demonstração HTML/JavaScript, os avisos serão persistidos em `localStorage`, na chave `vendinha:avisos-estoque:v1`, e compartilhados somente entre páginas e abas da mesma origem e navegador. Não haverá envio de e-mail ou notificações push. A comunicação entre dispositivos exigirá uma implementação posterior com backend e autenticação do vendedor.
+
 ## Painel do vendedor
 
 O painel deverá fornecer uma visão resumida da operação do vendedor, podendo apresentar:
