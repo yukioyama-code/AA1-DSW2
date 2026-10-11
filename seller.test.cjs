@@ -121,7 +121,7 @@ test('key masks handle typing, pasted keys and stored phone values', () => {
   assert.equal(context.maskPixKey(' TESTE@Example.com ', 'email'), 'teste@example.com');
 });
 
-test('form masks keys and cities while saving unmasked Pix data', () => {
+test('form masks keys and normalizes cities on blur while saving unmasked Pix data', () => {
   const app = run({ page: 'form' });
   app.fields.keyType.value = 'cpf';
   app.handlers.change();
@@ -130,11 +130,32 @@ test('form masks keys and cities while saving unmasked Pix data', () => {
   app.fields.key.listeners.input();
   assert.equal(app.fields.key.value, '123.456.789-01');
   app.fields.city.value = ' S\u00e3o  Carlos123! ';
-  app.fields.city.listeners.input();
   app.fields.city.listeners.blur();
   assert.equal(app.fields.city.value, 'S\u00e3o Carlos');
   assert.equal(app.context.formatCity('Santa B\u00e1rbara-d\u2019Oeste'), 'Santa B\u00e1rbara-d\u2019Oeste');
   app.handlers.submit({ preventDefault() {} });
   assert.equal(app.saved().key, '12345678901');
   assert.equal(app.saved().city, 'S\u00e3o Carlos');
+});
+
+test('city editing preserves accents and apostrophes until blur or submit', () => {
+  const app = run({ page: 'form' });
+  // An intermediate input value must survive so the keyboard can finish it.
+  for (const value of ['S~', 'S\u00e3', 'S\u00e3o', "D'", "D'\u00c1vila", 'A\u00e7', 'Ac\u0327u\u0301']) {
+    app.fields.city.value = value;
+    app.fields.city.listeners.input?.({ isComposing: true });
+    assert.equal(app.fields.city.value, value);
+  }
+  app.fields.city.value = ' Ac\u0327u\u0301 ';
+  app.fields.city.listeners.blur();
+  assert.equal(app.fields.city.value, 'A\u00e7\u00fa');
+
+  for (const city of ['S\u00e3o Carlos', 'A\u00e7\u00fa', "D'\u00c1vila", 'D\u2019\u00c1vila']) {
+    app.fields.city.value = city;
+    app.handlers.submit({ preventDefault() {} });
+    assert.equal(app.saved().city, city);
+    const payment = run({ page: 'payment', saved: app.saved() });
+    assert.equal(payment.button.disabled, false);
+    assert.equal(payment.code.value.slice(-4), payment.context.pixChecksum(payment.code.value.slice(0, -4)));
+  }
 });
