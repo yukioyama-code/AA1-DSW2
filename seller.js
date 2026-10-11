@@ -96,7 +96,8 @@ if (sellerForm) {
     updateKeyInput();
   });
   keyInput.addEventListener('input', () => applyInputMask(keyInput, (value) => maskPixKey(value, keyType.value)));
-  cityInput.addEventListener('input', () => applyInputMask(cityInput, formatCity));
+  // Do not rewrite the value while typing: dead keys and IMEs compose accents
+  // across multiple input events. Normalize only after editing or on submit.
   cityInput.addEventListener('blur', () => { cityInput.value = formatCity(cityInput.value).trim(); });
   sellerForm.addEventListener('submit', (event) => {
     event.preventDefault();
