@@ -1,5 +1,5 @@
 @import "tailwindcss";
-
+/*O arquivo de estilo para a aplicação, usando tailwindcss*/
 @theme {
   --color-ink: #10233b;
   --color-muted: #5e7187;

@@ -1,3 +1,4 @@
+//Verifica se o navegador suporta o recurso de copiar para a área de transferência
 const currency = new Intl.NumberFormat('pt-BR', {
   style: 'currency',
   currency: 'BRL'
@@ -6,6 +7,7 @@ const currency = new Intl.NumberFormat('pt-BR', {
 const quantity = document.querySelector('[data-quantity]');
 const total = document.querySelector('[data-total]');
 
+//Soma as quantidades e atualiza o valor total do produto
 function updateProductTotal() {
   if (!quantity || !total) return;
 
@@ -14,6 +16,7 @@ function updateProductTotal() {
   total.textContent = currency.format(unitPrice * amount);
 }
 
+//Adiciona eventos de clique aos botões de aumentar e diminuir a quantidade
 document.querySelectorAll('[data-quantity-action]').forEach((button) => {
   button.addEventListener('click', () => {
     const current = Number(quantity.textContent);
@@ -26,6 +29,7 @@ document.querySelectorAll('[data-quantity-action]').forEach((button) => {
   });
 });
 
+//Mensagens de feedback para o usuário ao copiar o código Pix
 const copyButton = document.querySelector('[data-copy-pix]');
 const copyStatus = document.querySelector('[data-copy-status]');
 const pixCode = document.querySelector('[data-pix-code]');
@@ -47,6 +51,7 @@ function pixChecksum(payload) {
   return crc.toString(16).toUpperCase().padStart(4, '0');
 }
 
+//Função que gera o código Pix com base nos dados fornecidos, seguindo o padrão do Banco Central
 function generatePixCode({ key, name, city, amount, txid = '***' }) {
   const normalize = (value, max) => value.normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '').toUpperCase()
@@ -67,6 +72,7 @@ function generatePixCode({ key, name, city, amount, txid = '***' }) {
   return payload + pixChecksum(payload);
 }
 
+//Feedback para o usuário ao copiar o código Pix. 
 copyButton?.addEventListener('click', async () => {
   if (!pixCode?.value) return;
 
@@ -92,7 +98,7 @@ document.querySelectorAll('[data-demo-confirm]').forEach((button) => {
 
 const imageInput = document.querySelector('#product-image');
 const imagePreview = document.querySelector('#image-preview');
-
+//Adiciona um evento de mudança ao input de imagem para exibir a pré-visualização da imagem selecionada
 imageInput?.addEventListener('change', () => {
   const [file] = imageInput.files;
   if (!file || !imagePreview) return;
@@ -175,6 +181,8 @@ if (reportForm && reportToggle) {
 
   document.querySelector('[data-stock-report-cancel]').addEventListener('click', closeReportForm);
 
+
+  //Valida os dados antes de registrar um aviso de estoque.
   reportForm.addEventListener('submit', (event) => {
     event.preventDefault();
     if (submitted || reportForm.hidden) return;
@@ -223,6 +231,7 @@ if (reportForm && reportToggle) {
   });
 }
 
+//Realiza validação e exibição dos relatórios de estoque no painel do vendedor
 const reportsPanel = document.querySelector('[data-stock-reports]');
 
 if (reportsPanel) {
@@ -241,6 +250,8 @@ if (reportsPanel) {
     return element;
   }
 
+
+  //Renderiza os relatórios de estoque no painel do vendedor, exibindo informações relevantes e permitindo marcar como conferido
   function renderStockReports() {
     error.textContent = '';
     list.replaceChildren();
@@ -294,6 +305,7 @@ if (reportsPanel) {
     }
   }
 
+  //Renderiza os relatórios de estoque ao carregar a página e adiciona eventos para atualizar a exibição quando houver alterações no armazenamento local
   renderStockReports();
   window.addEventListener('storage', (event) => {
     if (event.key === stockReportsKey || event.key === null) {

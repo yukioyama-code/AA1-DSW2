@@ -1,5 +1,7 @@
-const sellerStorageKey = 'vendinha.seller';
+//Gerencia cadastro e e os dados do vendedor
 
+const sellerStorageKey = 'vendinha.seller';
+//Aqui tem agumas máscaras, dependendo do tipo de chave Pix. 
 function maskPixKey(value, type) {
   if (type === 'email') return value.replace(/\s/g, '').toLowerCase().slice(0, 77);
   let digits = value.replace(/\D/g, '');
@@ -23,11 +25,13 @@ function maskPixKey(value, type) {
   }
   return result;
 }
-
+//Formata a cidade removendo caracteres inválidos e normalizando acentos
 function formatCity(value) {
   return value.normalize('NFC').replace(/[^\p{L}\p{M} '\u2019-]/gu, '').replace(/ +/g, ' ');
 }
 
+
+//Aplica a máscara de entrada ao campo de chave Pix, mantendo a posição do cursor
 function applyInputMask(input, formatter) {
   const cursor = input.selectionStart;
   const prefix = cursor === null ? null : formatter(input.value.slice(0, cursor));
@@ -35,6 +39,7 @@ function applyInputMask(input, formatter) {
   if (prefix !== null && input.type !== 'email') input.setSelectionRange(prefix.length, prefix.length);
 }
 
+//Verifica se realmente a chave Pix digitada está no formato correto
 function normalizePixKey(key, type) {
   const value = key.trim();
   if (type === 'email' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) && value.length <= 77) return value.toLowerCase();
@@ -51,6 +56,7 @@ function normalizePixKey(key, type) {
   throw new Error('Confira o formato da chave Pix e o tipo selecionado.');
 }
 
+//Lê os dados do vendedor do armazenamento local e gera o código Pix
 function readSeller() {
   try {
     const profile = JSON.parse(localStorage.getItem(sellerStorageKey));
@@ -63,6 +69,7 @@ function readSeller() {
   }
 }
 
+//Mostra ao usuário o formulário de cadastro do vendedor, permitindo que ele insira seus dados Pix e gere o código de pagamento
 const seller = readSeller();
 const sellerForm = document.querySelector('[data-seller-form]');
 if (sellerForm) {
@@ -132,6 +139,8 @@ checkoutLink?.addEventListener('click', () => {
   checkoutLink.href = `pagamento.html?quantidade=${Number(quantity.textContent)}`;
 });
 
+
+//Aqui realiza a verificação da quantidade de produtos selecionados e gera o código Pix para pagamento, exibindo o valor total a ser pago
 const paymentQuantity = document.querySelector('[data-payment-quantity]');
 if (pixCode && copyButton && paymentQuantity) {
   const requested = Number(new URLSearchParams(window.location.search).get('quantidade') || 1);

@@ -1,3 +1,4 @@
+//Aqui estão os testes unitários para o código do vendedor, incluindo cadastro, validação de chave Pix, exibição do dashboard e geração de código de pagamento.
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
