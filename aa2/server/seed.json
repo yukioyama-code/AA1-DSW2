@@ -1,0 +1,19 @@
+{
+  "produtos": [
+    {
+      "id": "cafe-coado",
+      "nome": "Café coado",
+      "descricao": "Café passado na hora para dar energia entre uma atividade e outra.",
+      "categoria": "Bebidas quentes",
+      "imagem": "cafe.jpg",
+      "imagemAlt": "Xícara de café coado",
+      "precoCentavos": 300,
+      "estoque": 12,
+      "vendedorId": "ana-martins"
+    }
+  ],
+  "vendedores": [
+    { "id": "ana-martins", "nome": "Ana Martins" }
+  ],
+  "avisosEstoque": []
+}
