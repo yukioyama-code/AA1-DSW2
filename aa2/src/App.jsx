@@ -1,4 +1,5 @@
-import { Link, Route, Routes, useParams } from 'react-router-dom';
+import { Link, Outlet, Route, Routes, useParams, useSearchParams } from 'react-router-dom';
+import Produto from './Produto.jsx';
 
 
 //Criando componentes bases para cada rota
@@ -6,22 +7,8 @@ function Home() {
   return (
     <>
       <h1 className="text-3xl font-bold">Vendinha por Confiança</h1>
-      <Link className="mt-4 inline-block text-brand underline" to="/produto/exemplo">
-        Abrir produto de exemplo
-      </Link>
-    </>
-  );
-}
-
-function Product() {
-  const { productId } = useParams();
-
-  return (
-    <>
-      <h1 className="text-2xl font-bold">Produto</h1>
-      <p className="mt-2 text-muted">Código do produto: {productId}</p>
-      <Link className="mt-4 inline-block text-brand underline" to={`/pagamento/${encodeURIComponent(productId)}`}>
-        Ir para pagamento
+      <Link className="mt-4 inline-block text-brand underline" to="/produto/cafe-coado">
+        Abrir Café coado
       </Link>
     </>
   );
@@ -29,11 +16,16 @@ function Product() {
 
 function Payment() {
   const { productId } = useParams();
+  const [params] = useSearchParams();
+  const quantidade = Number(params.get('quantidade'));
 
   return (
     <>
       <h1 className="text-2xl font-bold">Pagamento</h1>
       <p className="mt-2 text-muted">Código do produto: {productId}</p>
+      {Number.isSafeInteger(quantidade) && quantidade > 0 && (
+        <p className="mt-2 text-muted">Quantidade escolhida: {quantidade}</p>
+      )}
       <Link className="mt-4 inline-block text-brand underline" to={`/produto/${encodeURIComponent(productId)}`}>
         Voltar ao produto
       </Link>
@@ -49,7 +41,7 @@ function NotFound() {
   return <h1 className="text-2xl font-bold">Página não encontrada</h1>;
 }
 
-export default function App() {
+function Layout() {
   return (
     <>
       <header className="border-b border-line bg-white">
@@ -59,14 +51,22 @@ export default function App() {
         </nav>
       </header>
       <main className="mx-auto max-w-5xl px-4 py-8">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/produto/:productId" element={<Product />} />
-          <Route path="/pagamento/:productId" element={<Payment />} />
-          <Route path="/vendedor" element={<SellerDashboard />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Outlet />
       </main>
     </>
+  );
+}
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/produto/:productId" element={<Produto />} />
+      <Route element={<Layout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/pagamento/:productId" element={<Payment />} />
+        <Route path="/vendedor" element={<SellerDashboard />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
   );
 }
